@@ -1,0 +1,15 @@
+.container-wrapper  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.767) 0%, rgba(0, 0, 0, 0.747) 100%) ,url(/assets/images/bg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    .content{
+        width: 350px!important;
+    }
+}

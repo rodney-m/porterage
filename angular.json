@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "projects": {
+    "client-portal": "apps/client-portal",
+    "client-portal-e2e": "apps/client-portal-e2e",
+    "core": "libs/core",
+    "ui-authentication": "libs/ui/authentication",
+    "ui-layout": "libs/ui/layout"
+  }
+}
