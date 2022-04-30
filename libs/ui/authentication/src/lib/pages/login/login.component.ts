@@ -34,8 +34,9 @@ export class LoginComponent implements OnInit {
     this.uiLoader.start()
     this.authService.login(this.login.value).subscribe((res) => {
       if(res.success){
+        this.tokenService.setToken(res?.data?.account?.token)
+        console.log(res?.data?.token)
         this.router.navigateByUrl('/')
-        this.tokenService.setToken(res?.data?.token)
         this.uiLoader.stop()
       } else {
         this.uiLoader.stop()
@@ -44,12 +45,22 @@ export class LoginComponent implements OnInit {
           nzContent: '<b>Error occured trying to login. Make sure you entered correct details and try again',         
         });
       }
-    }, () => {
+    }, (error:any) => {
       this.uiLoader.stop()
-      this.modalService.error({
+      if (error.error.data.status === 2) {
+        console.log("error riya")
+        this.modalService.error({
         nzTitle: '<i>Login Failed</i>',
-        nzContent: '<b>Error occured trying to login. Make sure you entered correct details and try again',         
+        nzContent: "<b>"+error?.error?.messages[0],
+        nzOnOk: () => this.router.navigateByUrl('/auth/complete-profile')         
       });
+      } else {
+        this.modalService.error({
+          nzTitle: '<i>Login Failed</i>',
+          nzContent: '<b>Error occured trying to login. Make sure you entered correct details and try again',         
+        });
+      }
+      
     })
   }
 }

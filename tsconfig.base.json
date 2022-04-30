@@ -17,7 +17,8 @@
     "paths": {
       "@porterage/core": ["libs/core/src/index.ts"],
       "@porterage/ui/authentication": ["libs/ui/authentication/src/index.ts"],
-      "@porterage/ui/layout": ["libs/ui/layout/src/index.ts"]
+      "@porterage/ui/layout": ["libs/ui/layout/src/index.ts"],
+      "@porterage/ui/user-profiles": ["libs/ui/user-profiles/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

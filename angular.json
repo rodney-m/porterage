@@ -5,6 +5,7 @@
     "client-portal-e2e": "apps/client-portal-e2e",
     "core": "libs/core",
     "ui-authentication": "libs/ui/authentication",
-    "ui-layout": "libs/ui/layout"
+    "ui-layout": "libs/ui/layout",
+    "ui-user-profiles": "libs/ui/user-profiles"
   }
 }

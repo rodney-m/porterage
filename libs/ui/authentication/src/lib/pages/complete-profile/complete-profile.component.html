@@ -1,0 +1,54 @@
+<div class="login-wrapper">
+  <h1>Complete profile</h1>
+  <input *ngIf="!accountFound" class="my-3" nz-input placeholder="Email you used to register" [(ngModel)]="email" />
+  <button *ngIf="!accountFound" nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="findAccount()" [disabled]="email === ''">Continue</button>
+    <form *ngIf="accountFound" nz-form [formGroup]="completeProfileForm" class="login-form" (ngSubmit)="submitForm()">
+        <nz-form-item *ngIf="accountInfo.accountType === 1">
+          <nz-form-control nzErrorTip="Please input your first name!">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="firstName" placeholder="First name" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item *ngIf="accountInfo.accountType === 1">
+          <nz-form-control nzErrorTip="Please input your Last name!">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="lastName" placeholder="Last Name" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please input your Address!">
+            <nz-input-group>
+              <textarea
+              formControlName="address"
+              nz-input
+              placeholder="Address"
+              [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+            ></textarea>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item *ngIf="accountInfo.accountType === 1">
+          <nz-form-control nzErrorTip="Please input your Date of Birth!">
+            <nz-input-group>
+              <nz-date-picker nzPlaceHolder="DOB" formControlName="dateOfBirth"></nz-date-picker>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item *ngIf="accountInfo.accountType === 2">
+          <nz-form-control nzErrorTip="Please input your name of the instituition!">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="institutionName" placeholder="institution Name" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <div nz-row class="login-form-margin">
+          
+
+        </div>
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Submit</button>
+        
+        
+      </form>
+</div>

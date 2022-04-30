@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import {RouterModule, Routes} from '@angular/router'
+import { CompleteProfileComponent } from "./pages/complete-profile/complete-profile.component";
 import { ContainerComponent } from "./pages/container/container.component";
 import { ForgotPasswordComponent } from "./pages/forgot-password/forgot-password.component";
 import { LoginComponent } from "./pages/login/login.component";
@@ -15,6 +16,7 @@ const routes: Routes = [
             {path : 'otp/:email', component : OtpComponent},
             {path : 'sign-up', component : RegistrationComponent},
             {path : 'forgot-password', component : ForgotPasswordComponent},
+            {path : 'complete-profile', component : CompleteProfileComponent},
             { path: '', pathMatch: 'full', redirectTo: 'login' },
             { path: '**',  redirectTo: 'login' },
         ],

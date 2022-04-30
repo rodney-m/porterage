@@ -116,8 +116,8 @@ export class OtpComponent implements OnInit {
         if(res.success){
           this.modalService.success({
             nzTitle: '<i>Account Verified</i>',
-            nzContent: '<b>Account verification Successful. Login now',
-            nzOnOk: () => this.router.navigateByUrl('/auth/login')
+            nzContent: '<b>Account verification Successful. Complete your profile now',
+            nzOnOk: () => this.router.navigateByUrl('/auth/complete-profile')
           
           })
           

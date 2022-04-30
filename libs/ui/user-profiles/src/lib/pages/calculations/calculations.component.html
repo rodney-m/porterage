@@ -1,0 +1,33 @@
+<form nz-form [nzLayout]="'inline'" [formGroup]="calculateForm" (ngSubmit)="calculate()">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your starting amount!">
+        <nz-input-group >
+          <input formControlName="startingAmount" type="number" nz-input placeholder="Starting Amount" min="10" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your investment period!">
+        <nz-input-group >
+          <input formControlName="period" nz-input type="number" placeholder="Investment Period in years" min="1" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-select formControlName="profileType" nzPlaceHolder="Account Type">
+            <nz-option *ngFor="let profileType of profileTypes" [nzValue]="profileType.id"  [nzLabel]="profileType.name"></nz-option>
+           
+        </nz-select>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" [disabled]="!calculateForm.valid">Calculate</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+
+  <highcharts-chart *ngIf="cumulatedReturn.length > 0 && years.length > 0"
+   [Highcharts] = "highcharts" 
+   [options] = "chartOptions">
+</highcharts-chart>

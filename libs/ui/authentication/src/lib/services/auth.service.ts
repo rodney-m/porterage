@@ -23,8 +23,18 @@ export class AuthService {
   resetPasswordSendEmail(email: any) {
     return this.http.get(`https://pas-usermanagement-api.herokuapp.com/api/v1/Account/reset-password/verification-code/${email}`)   
   }
-
+  
   resetPassword(accountDetails: any) {
     return this.http.post<any>(`https://pas-usermanagement-api.herokuapp.com/api/v1/Account/reset-password`, accountDetails)   
+  }
+  getAccountByEmail(email: any) {
+    return this.http.get(`https://pas-usermanagement-api.herokuapp.com/api/v1/Account/account-details/${email}`)   
+  }
+
+  completeIndividualProfile(accountDetails: any) {
+    return this.http.post<any>(`https://pas-usermanagement-api.herokuapp.com/api/v1/UserProfile/individual/create-profile`, accountDetails)   
+  }
+  completeInstituitionProfile(accountDetails: any) {
+    return this.http.post<any>(`https://pas-usermanagement-api.herokuapp.com/api/v1/UserProfile/institution/create-profile`, accountDetails)   
   }
 }

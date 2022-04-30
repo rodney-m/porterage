@@ -17,9 +17,11 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { OtpComponent } from './pages/otp/otp.component';
 import { TokenService } from '@porterage/core';
+import { CompleteProfileComponent } from './pages/complete-profile/complete-profile.component';
 
 @NgModule({
   imports: [
@@ -37,6 +39,7 @@ import { TokenService } from '@porterage/core';
     NzCardModule,
     NzButtonModule,
     NzSelectModule,
+    NzDatePickerModule
   ],
   declarations: [
     ContainerComponent,
@@ -44,8 +47,9 @@ import { TokenService } from '@porterage/core';
     ForgotPasswordComponent,
     RegistrationComponent,
     OtpComponent,
+    CompleteProfileComponent,
   ],
-  exports: [OtpComponent],
+  exports: [OtpComponent, CompleteProfileComponent],
   providers: [AuthService, TokenService],
 })
 export class UiAuthenticationModule {}

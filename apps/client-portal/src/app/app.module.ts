@@ -15,9 +15,11 @@ import { httpInterceptor, TokenService, UiLoader } from '@porterage/core';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { JWT_OPTIONS, JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NgChartsModule } from 'ng2-charts';
 
-
-
+//I keep the new line
 registerLocaleData(en);
 
 export function jwtOptionsFactory(tokenService: TokenService) {
@@ -30,15 +32,14 @@ export function jwtOptionsFactory(tokenService: TokenService) {
   };
 }
 
-
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
   imports: [
     NgxUiLoaderModule.forRoot(UiLoader.load()),
     NgxUiLoaderHttpModule,
-    BrowserModule, 
-    BrowserAnimationsModule, 
-    AppRoutingModule, FormsModule, 
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule, FormsModule,
     HttpClientModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
@@ -48,6 +49,9 @@ export function jwtOptionsFactory(tokenService: TokenService) {
       },
     }),
     NgbModule,
+    NzLayoutModule,
+    NzSpaceModule,
+    NgChartsModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US },
   { provide: HTTP_INTERCEPTORS, useClass: httpInterceptor, multi: true }
@@ -55,4 +59,5 @@ export function jwtOptionsFactory(tokenService: TokenService) {
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {
+}

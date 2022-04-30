@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/ui/user-profiles",
+  "sourceRoot": "libs/ui/user-profiles/src",
+  "prefix": "porterage",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ui/user-profiles"
+      ],
+      "options": {
+        "jestConfig": "libs/ui/user-profiles/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ui/user-profiles/src/**/*.ts",
+          "libs/ui/user-profiles/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

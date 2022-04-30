@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenService } from '@porterage/core';
 
 @Component({
   selector: 'porterage-top-nav',
@@ -6,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-nav.component.scss'],
 })
 export class TopNavComponent implements OnInit {
-  constructor() {}
+  constructor(private tokenService: TokenService) {}
 
   ngOnInit(): void {}
+
+  logout(){
+    this.tokenService.clearToken()
+    window.location.reload()
+  }
 }
