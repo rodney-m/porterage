@@ -15,14 +15,20 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import {CheckboxModule} from 'primeng/checkbox';
 
-import {NgChartsModule } from 'ng2-charts'
+
+import { NgChartsModule } from 'ng2-charts';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { GetStocksComponent } from './pages/get-stocks/get-stocks.component';
 
 @NgModule({
   imports: [
-    NgChartsModule ,
-    CommonModule, 
+    NzCheckboxModule,
+    CheckboxModule,
+    NgChartsModule,
+    CommonModule,
     UserProfilesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -35,14 +41,14 @@ import { HighchartsChartModule } from 'highcharts-angular';
     NzCardModule,
     NzButtonModule,
     NzSelectModule,
-    HighchartsChartModule
-    
+    HighchartsChartModule,
   ],
   declarations: [
     ConservativeComponent,
     ModerateComponent,
     AggressiveComponent,
     CalculationsComponent,
+    GetStocksComponent,
     // HighchartsChartComponent
   ],
   exports: [

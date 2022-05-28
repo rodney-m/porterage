@@ -1,0 +1,89 @@
+<div class="container" *ngIf="!stage2">
+    <h5 class="text-center my-5">Select Profile Type and Company Stocks category</h5>
+    <form nz-form  [formGroup]="form" (ngSubmit)="submitForm()">
+    <nz-form-item>
+        <nz-select formControlName="profile" nzPlaceHolder="Select profile type">
+            <nz-option *ngFor="let profileType of profiles" [nzValue]="profileType.id"  [nzLabel]="profileType.name"></nz-option>           
+        </nz-select>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-select formControlName="category" nzPlaceHolder="Select Category">
+            <nz-option *ngFor="let category of categories" [nzValue]="category.id"  [nzLabel]="category.name"></nz-option>
+           
+        </nz-select>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" [disabled]="!form.valid">Submit</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+
+<div class="container" *ngIf="stage2 && !showGraph">
+    <h5 class="text-center my-5">Select companies to invest in</h5>
+    
+    <!-- <nz-checkbox-group [(ngModel)]="stocks" (ngModelChange)="selectCompany(stocks)"></nz-checkbox-group> -->
+    <!-- <label nz-checkbox *ngFor="let stock of stocks" [(ngModel)]="stock.id" [nzValue]="stock.id" (change)="selectCompany(stock)"  >{{stock.companyName}}</label>  -->
+    <!-- <div *ngFor="let stock of stocks">
+        <input type="checkbox" [id]="stock.companyCode" name="stock.companyCode" [value]="stock.id" binary="true" [(ngModel)]="stock.id" (ngModelChange)="selectCompany(stock.id)">
+      <label for="vehicle1"> {{stock.companyName}}</label>
+    </div> -->
+
+    <div class="p-field-checkbox my-5" *ngFor="let stock of stocks" class="m-3">
+        <p-checkbox [(ngModel)]="stock.checked" [binary]="true"  (onChange)="selectCompany()"></p-checkbox>
+        <label for="{{ stock.id }}"> {{ stock.companyName }}
+        </label>
+    </div>
+
+    <form nz-form [formGroup]="calculateForm" (ngSubmit)="calculate()">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please input your starting amount!">
+            <nz-input-group >
+                <label >Starting Amount</label>
+              <input formControlName="startingAmount" type="number" nz-input placeholder="Starting Amount" min="10" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please input your investment period!">
+            <nz-input-group >
+                <label >Investment Period</label>
+
+              <input formControlName="period" nz-input type="number" placeholder="Investment Period in years" min="1" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <label >Select Account Type</label>
+
+            <nz-select formControlName="accountType" nzPlaceHolder="Account Type">
+                <nz-option *ngFor="let accountType of accountTypes" [nzValue]="accountType.id"  [nzLabel]="accountType.name"></nz-option>
+               
+            </nz-select>
+        </nz-form-item>
+        <nz-form-item>
+            <label >Select Profile Type</label>
+
+            <nz-select formControlName="profileType" nzPlaceHolder="Select profile type">
+                <nz-option *ngFor="let profileType of profiles" [nzValue]="profileType.id"  [nzLabel]="profileType.name"></nz-option>           
+            </nz-select>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <button nz-button nzType="primary" [disabled]="!calculateForm.valid">Calculate</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+</div>
+
+<div class="container" *ngIf="cumulatedReturn.length > 0 && years.length > 0">
+    <highcharts-chart *ngIf="cumulatedReturn.length > 0 && years.length > 0"
+        [Highcharts] = "highcharts" 
+        [options] = "chartOptions">
+     </highcharts-chart>
+
+     <button nz-button nzType="primary" (click)="reCalculate">Recalculate</button>
+
+</div>
+
