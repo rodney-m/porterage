@@ -18,6 +18,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NgChartsModule } from 'ng2-charts';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 //I keep the new line
 registerLocaleData(en);
@@ -33,13 +35,19 @@ export function jwtOptionsFactory(tokenService: TokenService) {
 }
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
+  declarations: [
+    AppComponent,
+    NxWelcomeComponent,
+    HomeComponent,
+    AboutComponent,
+  ],
   imports: [
     NgxUiLoaderModule.forRoot(UiLoader.load()),
     NgxUiLoaderHttpModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule, FormsModule,
+    AppRoutingModule,
+    FormsModule,
     HttpClientModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
@@ -51,13 +59,13 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     NgbModule,
     NzLayoutModule,
     NzSpaceModule,
-    NgChartsModule
+    NgChartsModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US },
-  { provide: HTTP_INTERCEPTORS, useClass: httpInterceptor, multi: true }
+  providers: [
+    { provide: NZ_I18N, useValue: en_US },
+    { provide: HTTP_INTERCEPTORS, useClass: httpInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule {
-}
+export class AppModule {}
