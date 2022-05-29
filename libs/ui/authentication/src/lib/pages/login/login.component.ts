@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       if(res.success){
         this.tokenService.setToken(res?.data?.account?.token)
         console.log(res?.data?.token)
-        this.router.navigateByUrl('/')
+        this.router.navigateByUrl('/user-profiles')
         this.uiLoader.stop()
       } else {
         this.uiLoader.stop()
@@ -46,20 +46,21 @@ export class LoginComponent implements OnInit {
         });
       }
     }, (error:any) => {
+      console.log("error")
       this.uiLoader.stop()
-      if (error.error.data.status === 2) {
-        console.log("error riya")
-        this.modalService.error({
-        nzTitle: '<i>Login Failed</i>',
-        nzContent: "<b>"+error?.error?.messages[0],
-        nzOnOk: () => this.router.navigateByUrl('/auth/complete-profile')         
-      });
-      } else {
+      // if (error.error.data.status === 2) {
+      //   console.log("error riya")
+      //   this.modalService.error({
+      //   nzTitle: '<i>Login Failed</i>',
+      //   nzContent: "<b>"+error?.error?.messages[0],
+      //   nzOnOk: () => this.router.navigateByUrl('/auth/complete-profile')         
+      // });
+      // } else {
         this.modalService.error({
           nzTitle: '<i>Login Failed</i>',
           nzContent: '<b>Error occured trying to login. Make sure you entered correct details and try again',         
         });
-      }
+      
       
     })
   }

@@ -39,27 +39,19 @@ export class RegistrationComponent implements OnInit {
   }
 
   signUp(){    
+    if ((this.formControls['password'].value !== this.formControls['confirmPassword'].value) || !this.signUpForm.valid) {
+      this.modalService.confirm({
+        nzTitle: 'Error Occurred',
+        nzContent: 'Fill in all fields correctly',
+        nzOkText: 'OK',
+      });
+    }
     this.uiLoader.start()
     if ((this.formControls['password'].value === this.formControls['confirmPassword'].value) && this.signUpForm.valid){
       this.authService.signUp(this.signUpForm.value).subscribe((response:any) => {
-        if (response.success === true){
-            // this.modalService.create({
-            //   nzTitle: 'Enter OTP sent to your email',
-            //   nzContent: OtpComponent,
-            // });
-            this.uiLoader.stop()
-            this.router.navigateByUrl(`/auth/otp/${this.signUpForm.value.email}`)
-            
-        }
-
-        if (response.success === false){
-          this.uiLoader.stop()
-          this.modalService.confirm({
-            nzTitle: 'Registration failed',
-            nzContent: response.messages[0],
-            nzOkText: 'OK',
-          });
-        }
+        this.uiLoader.stop()
+        this.router.navigateByUrl(`/auth/otp/${this.signUpForm.value.email}`)
+        
       }, (error : any)=> {
         this.uiLoader.stop()
           this.modalService.confirm({

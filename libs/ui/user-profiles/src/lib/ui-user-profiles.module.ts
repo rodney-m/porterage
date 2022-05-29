@@ -22,9 +22,11 @@ import {CheckboxModule} from 'primeng/checkbox';
 import { NgChartsModule } from 'ng2-charts';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { GetStocksComponent } from './pages/get-stocks/get-stocks.component';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 @NgModule({
   imports: [
+    NzInputNumberModule,
     NzCheckboxModule,
     CheckboxModule,
     NgChartsModule,

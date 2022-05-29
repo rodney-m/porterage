@@ -30,6 +30,8 @@
       <label for="vehicle1"> {{stock.companyName}}</label>
     </div> -->
 
+    <h4>Select at least 2 companies</h4>
+
     <div class="p-field-checkbox my-5" *ngFor="let stock of stocks" class="m-3">
         <p-checkbox [(ngModel)]="stock.checked" [binary]="true"  (onChange)="selectCompany()"></p-checkbox>
         <label for="{{ stock.id }}"> {{ stock.companyName }}
@@ -41,7 +43,8 @@
           <nz-form-control nzErrorTip="Please input your starting amount!">
             <nz-input-group >
                 <label >Starting Amount</label>
-              <input formControlName="startingAmount" type="number" nz-input placeholder="Starting Amount" min="10" />
+              <!-- <input formControlName="startingAmount" type="number" nz-input placeholder="Starting Amount" [min]='89' [max]='max' /> -->
+              <nz-input-number formControlName="startingAmount" [nzMin]="min" [nzMax]="max" [nzStep]="1"></nz-input-number>
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
@@ -62,13 +65,13 @@
                
             </nz-select>
         </nz-form-item>
-        <nz-form-item>
+        <!-- <nz-form-item>
             <label >Select Profile Type</label>
 
             <nz-select formControlName="profileType" nzPlaceHolder="Select profile type">
                 <nz-option *ngFor="let profileType of profiles" [nzValue]="profileType.id"  [nzLabel]="profileType.name"></nz-option>           
             </nz-select>
-        </nz-form-item>
+        </nz-form-item> -->
         <nz-form-item>
           <nz-form-control>
             <button nz-button nzType="primary" [disabled]="!calculateForm.valid">Calculate</button>
@@ -82,8 +85,14 @@
         [Highcharts] = "highcharts" 
         [options] = "chartOptions">
      </highcharts-chart>
+     
+          <highcharts-chart *ngIf="breakdown.length > 0"
+              [Highcharts] = "highcharts" 
+              [options] = "pieChartOptions">
+           </highcharts-chart>
 
+           <p *ngFor="let i of breakdown">{{i[0]}} - {{i[1]}}%</p>
+     
      <button nz-button nzType="primary" (click)="reCalculate">Recalculate</button>
-
+     
 </div>
-

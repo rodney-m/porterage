@@ -9,6 +9,7 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['./get-stocks.component.scss'],
 })
 export class GetStocksComponent implements OnInit {
+  breakdown :any[] = []
   form!: FormGroup
   calculateForm!: FormGroup
   chartsData!: any;
@@ -38,6 +39,50 @@ export class GetStocksComponent implements OnInit {
       type: 'spline'
     }]
   }
+
+
+  pieChartOptions: Highcharts.Options  = {   
+    chart : {
+       plotBorderWidth: 1,
+       plotShadow: false
+    },
+    title : {
+       text: 'Portfolio weights'   
+    },
+    tooltip : {
+       pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions : {
+       pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+    
+          dataLabels: {
+             enabled: false           
+          },
+    
+          showInLegend: true
+       }
+    },
+    series : [{
+       type: 'pie',
+       name: 'Companies share',
+       data: this.breakdown
+    }]
+ };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   profiles = [
@@ -122,10 +167,32 @@ export class GetStocksComponent implements OnInit {
   ]
   selectedCompanies = []
   stage2 = false;
+
+  startValueRanges :any = {
+    1 : {
+      min: 0,
+      max: 4999,
+    },
+    2 : {
+      min: 5000,
+      max: 14999,
+    },
+    3 : {
+      min: 15000,
+      max: 4999,
+    },
+  }
+
+  min= 0;
+  max= 0;
   constructor(private formBuilder: FormBuilder, private stocksService: UserProfileService) {}
 
   ngOnInit(): void {
     this.initializeForm()
+  }
+
+  get profile(){
+    return this.form.controls['profile']
   }
 
   initializeForm(){
@@ -136,8 +203,8 @@ export class GetStocksComponent implements OnInit {
 
     this.calculateForm = this.formBuilder.group({      
         accountType: [1, Validators.required],
-        profileType: [1, Validators.required],
-        startingAmount: [0, Validators.required],
+        // profileType: [1, Validators.required],
+        startingAmount: ['', Validators.required],
         period: [0, Validators.required],
       
     })
@@ -153,8 +220,18 @@ export class GetStocksComponent implements OnInit {
             checked: false
           }
         })
-        console.log(this.stocks)
+        console.log(this.profile.value)
         this.stage2 = true;
+        if (this.profile.value === 1){
+            this.max = 4999
+            this.min = 10
+        } else if (this.profile.value === 2) {
+            this.max = 14999
+            this.min = 5000
+        } else if(this.profile.value === 3){
+            this.max = 1000000
+            this.min = 15000
+        }
       },
       error: (err: any)=> {
         console.log(err)
@@ -172,6 +249,7 @@ export class GetStocksComponent implements OnInit {
   calculate(){
     const requestObj : any = {
       ...this.calculateForm.value,
+        profileType: this.form.value['profile'],
         selectedCompanies: this.selectedCompanies
     }
     
@@ -179,11 +257,16 @@ export class GetStocksComponent implements OnInit {
       next: (res:any)=> {
         this.showGraph = true;
         let data = res.data.returns
+        let breakdown = res.data.breakdown
         data.map((object:any) => {
           Object.keys(object).map((key, index) => {
             (key === 'year')?  this.years.push((object['year']).toString()) :    this.cumulatedReturn.push(object['cumulatedReturn'])
           })
         })
+        breakdown.map((company:any) => {
+          this.breakdown.push([(company.companyName).toString(), Number(company.percentAllocation) ]) 
+        })
+        console.log(this.breakdown)
       },
       error: (err:any)=> {console.log(err)},
       complete: ()=> {console.log("done")}
