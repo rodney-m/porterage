@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserProfileService } from '../../services/user-profile.service';
 import * as Highcharts from 'highcharts';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'porterage-get-stocks',
@@ -109,6 +110,7 @@ export class GetStocksComponent implements OnInit {
       name : 'Consumer goods '
     }
   ]
+  rating = 0
 
   stocks : any[] = [
     // {
@@ -185,7 +187,7 @@ export class GetStocksComponent implements OnInit {
 
   min= 0;
   max= 0;
-  constructor(private formBuilder: FormBuilder, private stocksService: UserProfileService) {}
+  constructor(private formBuilder: FormBuilder, private stocksService: UserProfileService, private notifications: NzNotificationService) {}
 
   ngOnInit(): void {
     this.initializeForm()
@@ -244,6 +246,7 @@ export class GetStocksComponent implements OnInit {
 
   reCalculate(){
     window.location.reload()    
+    window.location.href = window.location.href
   }
 
   calculate(){
@@ -282,4 +285,18 @@ export class GetStocksComponent implements OnInit {
       this.selectedCompanies = selectedCompanies
       console.log(selectedCompanies)
   }
+
+  rate(){
+    this.stocksService.rate(this.rating).subscribe({
+      next: (res:any) => {
+        console.log(res)
+      },
+      error: () => {},
+      complete: () => {
+        this.notifications.success('Success', 'Your rating has been submitted')
+      },
+    })
+  }
+
+
 }

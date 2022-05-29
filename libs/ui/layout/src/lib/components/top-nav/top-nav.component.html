@@ -4,6 +4,7 @@
     <li nz-menu-item>nav 2</li>
     <li nz-menu-item>nav 3</li>
 </ul> -->
+<div class="pill"><nz-avatar [nzText]="user?.email[0]" style="color:#f56a00; background-color:#fde3cf;"></nz-avatar> {{user?.email}}</div>
 <button nz-button nzType="primary" (click)="logout()">
     <i nz-icon nzType="poweroff"></i>
     Logout

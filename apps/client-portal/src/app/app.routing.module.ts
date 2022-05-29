@@ -15,7 +15,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         children : 
             [
-                {path : 'user-profiles', loadChildren: () => import('@porterage/ui/user-profiles').then(c => c.UiUserProfilesModule)},
+                {path : 'calculations', loadChildren: () => import('@porterage/ui/user-profiles').then(c => c.UiUserProfilesModule)},
                 {path: '', redirectTo: 'user-profiles', pathMatch: 'full'}
             ]
     }

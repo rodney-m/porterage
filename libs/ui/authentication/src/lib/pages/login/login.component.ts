@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       if(res.success){
         this.tokenService.setToken(res?.data?.account?.token)
         console.log(res?.data?.token)
-        this.router.navigateByUrl('/user-profiles')
+        this.router.navigateByUrl('/calculations')
         this.uiLoader.stop()
       } else {
         this.uiLoader.stop()

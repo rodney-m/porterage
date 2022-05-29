@@ -23,9 +23,13 @@ import { NgChartsModule } from 'ng2-charts';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { GetStocksComponent } from './pages/get-stocks/get-stocks.component';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzRateModule } from 'ng-zorro-antd/rate';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 @NgModule({
   imports: [
+    NzNotificationModule,
+    NzRateModule,
     NzInputNumberModule,
     NzCheckboxModule,
     CheckboxModule,

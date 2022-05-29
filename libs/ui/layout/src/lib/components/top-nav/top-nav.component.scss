@@ -1,9 +1,20 @@
 .top-bar-container{
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     height: 100%;
 
     button{
-        margin-left: auto;
+        // margin-left: auto;
+    }
+    .pill{
+        // margin-left: auto;
+        background-color: #fefefe;
+        padding: 5px 10px;
+        display: inline;
+        height: fit-content!important;
+        line-height: 0;
+        margin-right: 20px;
+        border-radius: 20px;
     }
 }

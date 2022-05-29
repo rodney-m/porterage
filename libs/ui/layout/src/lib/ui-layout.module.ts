@@ -12,11 +12,12 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { RouterModule } from '@angular/router';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
 
 
 @NgModule({
-  imports: [RouterModule, CommonModule,  NzBreadCrumbModule, NzLayoutModule, NzMenuModule, NzToolTipModule, NzButtonModule, NzTableModule, NzIconModule],
+  imports: [RouterModule, CommonModule,  NzBreadCrumbModule, NzLayoutModule, NzMenuModule, NzToolTipModule, NzButtonModule, NzTableModule, NzIconModule, NzAvatarModule],
   declarations: [ContainerComponent, SideMenuComponent, TopNavComponent],
   exports: [ContainerComponent]
 })

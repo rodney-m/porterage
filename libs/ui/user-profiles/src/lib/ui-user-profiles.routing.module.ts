@@ -7,17 +7,20 @@ import { GetStocksComponent } from "./pages/get-stocks/get-stocks.component";
 import { ModerateComponent } from "./pages/moderate/moderate.component";
 
 const routes = [
+    // {
+    //     path: 'conservative', component : ConservativeComponent
+    // },
+    // {
+    //     path: 'aggressive', component : AggressiveComponent
+    // },
+    // {
+    //     path: 'moderate', component : ModerateComponent
+    // },
+    // {
+    //     path: 'calculations', component : CalculationsComponent
+    // },
     {
-        path: 'conservative', component : ConservativeComponent
-    },
-    {
-        path: 'aggressive', component : AggressiveComponent
-    },
-    {
-        path: 'moderate', component : ModerateComponent
-    },
-    {
-        path: 'calculations', component : CalculationsComponent
+        path: 'profiles', component : AggressiveComponent
     },
     {
         path: '', component : GetStocksComponent

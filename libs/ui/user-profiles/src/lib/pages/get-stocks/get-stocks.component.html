@@ -93,6 +93,8 @@
 
            <p *ngFor="let i of breakdown">{{i[0]}} - {{i[1]}}%</p>
      
-     <button nz-button nzType="primary" (click)="reCalculate">Recalculate</button>
+      <nz-rate [ngModel]="rating" (ngModelChange)="rate()"></nz-rate> <br>
+     <button class="my-4" nz-button nzType="primary" (click)="reCalculate()">Recalculate</button>
+
      
-</div>
+    </div>
